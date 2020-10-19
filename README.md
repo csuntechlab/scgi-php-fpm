@@ -30,12 +30,12 @@ Moveover, PHP-FPM does not fork off a child process to execute the CGI program. 
   * Step 1: Validate worthiness as a single process
     * Use the (SCGI wrapper)[https://github.com/csuntechlab/scgi-daemon]
     * Conduct performance comparison:
-       * php execution via as a straight CGI process
-       * php execution via as an FCGI process
-       * php execution via the SCGI wrapper
+     * php execution via as a straight CGI process
+     * php execution via as an FCGI process
+     * php execution via the SCGI wrapper
   * Step 2: Validate worthiness a a pool of processes
-    1. Update the (socket)[https://github.com/csuntechlab/socket] program
-    1. Conduct performance comparison with N simultaneous runs of a program.
+    * Update the (socket)[https://github.com/csuntechlab/socket] program
+    * Conduct performance comparison with N simultaneous runs of a program.
   * Step 3. Reengineer the current php implemnation
     (This would be a strickly reengineer task)
 
