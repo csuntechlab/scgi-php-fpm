@@ -21,7 +21,22 @@ The php-fpm utilizes the Fast Common Gateway Interface (FCGI) protocol, and we p
 The following diagram depicts the general process flow for executing a CGI process via a FCGI and a SCGI server.  There are fewer steps when using the SCGI server.  Moverover, there is no need to perform any post processing of the CGI program.  This provides further opportunities to reduce the number of process concurrent processes that are needed.
 
 ![FCGI and SCGI Flow Diagram](https://github.com/csuntechlab/scgi-php-fpm/blob/main/images/FCGI-and-SCGI-Flow.png)
+
 \* The PHP-FPM framework manages a pool of child processes to handle each FCGI request (which is not depicted in the above diagram).  Moveover, PHP-FPM does not fork off a child process to execute the CGI program.  Instead it interpretes the PHP program within the process that is managing the FCGI request. This child process for executing a CGI process is needed, however, in the general case with the FCGI model.  
+
+### Approaches
+  * Step 1: Validate worthiness as a single process
+    * Use the (SCGI wrapper)[https://github.com/csuntechlab/scgi-daemon]
+    * Conduct performance comparison:
+     1. php execution via as a straight CGI process
+     1. php execution via as an FCGI process
+     1. php execution via the SCGI wrapper
+  * Step 2: Validate worthiness a a pool of processes
+    1. Update the (socket)[https://github.com/csuntechlab/socket] program
+    1. Conduct performance comparison with N simultaneous runs of a program.
+  * Step 3. Reengineer the current php implemnation
+    (This would be a strickly reengineer task)
+
 
 ## Related Links
 * Common Gateway Interface (CGI): https://en.wikipedia.org/wiki/Common_Gateway_Interface
