@@ -22,15 +22,17 @@ The following diagram depicts the general process flow for executing a CGI proce
 
 ![FCGI and SCGI Flow Diagram](https://github.com/csuntechlab/scgi-php-fpm/blob/main/images/FCGI-and-SCGI-Flow.png)
 
-\* The PHP-FPM framework manages a pool of child processes to handle each FCGI request (which is not depicted in the above diagram).  Moveover, PHP-FPM does not fork off a child process to execute the CGI program.  Instead it interpretes the PHP program within the process that is managing the FCGI request. This child process for executing a CGI process is needed, however, in the general case with the FCGI model.  
+\* The PHP-FPM framework manages a pool of child processes to handle each FCGI request (which is not depicted in the above diagram).  
+
+Moveover, PHP-FPM does not fork off a child process to execute the CGI program.  Instead it interpretes the PHP program within the process that is managing the FCGI request. This child process for executing a CGI process is needed, however, in the general case with the FCGI model.  
 
 ### Approaches
   * Step 1: Validate worthiness as a single process
     * Use the (SCGI wrapper)[https://github.com/csuntechlab/scgi-daemon]
     * Conduct performance comparison:
-     1. php execution via as a straight CGI process
-     1. php execution via as an FCGI process
-     1. php execution via the SCGI wrapper
+       * php execution via as a straight CGI process
+       * php execution via as an FCGI process
+       * php execution via the SCGI wrapper
   * Step 2: Validate worthiness a a pool of processes
     1. Update the (socket)[https://github.com/csuntechlab/socket] program
     1. Conduct performance comparison with N simultaneous runs of a program.
